@@ -148,11 +148,12 @@ You can view the release workflow configuration in `.github/workflows/release-pl
 
 ## Usage
 
-The tool provides a simple command-line interface.
+The tool provides a simple command-line interface. After installing the package with `pip install -e .`, you can use the
+`kmk` command directly:
 
 1. **Deploy the infrastructure (Kafka Clusters + MirrorMaker 2):**
    ```bash
-   python src/cli/kmk-cli.py deploy
+   kmk deploy
    ```
    This command will start the Docker containers for the two Kafka clusters and a MirrorMaker 2 instance configured to
    replicate all topics (or specific topics if configured) from the `primary` cluster to the `secondary` cluster.
@@ -160,23 +161,23 @@ The tool provides a simple command-line interface.
 
 2. **Produce messages to the primary cluster:**
    ```bash
-   python src/cli/kmk-cli.py produce --topic my_topic --messages 10
+   kmk produce --topic my_topic --messages 10
    ```
    This will send 10 sample messages to the `my_topic` topic on the `primary` cluster.
 
 3. **Consume messages from the secondary cluster (for verification):**
    ```bash
-   python src/cli/kmk-cli.py consume --topic primary.my_topic --cluster secondary --messages 10
+   kmk consume --topic primary.my_topic --cluster secondary --messages 10
    ```
    This will attempt to read 10 messages from the replicated `primary.my_topic` topic on the `secondary` cluster.
 
 4. **Check status (optional, to be implemented):**
    ```bash
-   python src/cli/kmk-cli.py status
+   kmk status
    ```
 
 5. **Destroy the infrastructure:**
    ```bash
-   python src/cli/kmk-cli.py destroy
+   kmk destroy
    ```
    This will stop and remove all Docker containers created by the tool.

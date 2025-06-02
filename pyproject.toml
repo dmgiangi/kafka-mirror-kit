@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=80.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -36,6 +36,9 @@ dependencies = [
 [project.urls] # Link utili
 "Homepage" = "https://github.com/dmgiangi/kafka-mirror-kit"
 "Bug Tracker" = "https://github.com/dmgiangi/kafka-mirror-kit/issues"
+
+[project.scripts]
+kmk = "kafka_mirror_kit.cli.kmk_cli:cli"
 
 [tool.setuptools.packages.find]
 where = ["src"]

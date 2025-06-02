@@ -1,25 +1,18 @@
 """
 Tests for the Kafka Mirror Kit CLI.
 
-This module contains tests for the CLI interface defined in kmk-cli.py.
+This module contains tests for the CLI interface defined in kmk.py.
 """
 
-import importlib.util
 import os
 import sys
 import unittest
 
 from click.testing import CliRunner
 
-# Add the parent directory to sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-# Import the CLI from kmk-cli.py using importlib
-spec = importlib.util.spec_from_file_location("kmk_cli", os.path.join(os.path.dirname(os.path.dirname(__file__)), "src",
-                                                                      "kmk-cli.py"))
-kmk_cli = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(kmk_cli)
-cli = kmk_cli.cli
+# Import the CLI module directly
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from src.cli.kmk import cli
 
 
 class TestCLI(unittest.TestCase):

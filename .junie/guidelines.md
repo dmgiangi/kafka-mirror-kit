@@ -9,7 +9,8 @@ This document provides essential information for developers working on the Kafka
 1. **Dependencies**:
     - Python 3.8+ is required
     - Docker and Docker Compose are required for running Kafka clusters
-    - Install Python dependencies with: `pip install -r requirements.txt`
+   - Install the package in development mode with: `pip install -e .`
+   - This enables an "editable install" where changes to the source code are immediately reflected without reinstalling
 
 2. **Project Structure**:
     - `src/`: Contains the source code
@@ -63,7 +64,7 @@ This document provides essential information for developers working on the Kafka
    ```python
    import unittest
    from unittest.mock import patch
-   from src.your_module import YourClass
+   from kafka_mirror_kit.core.your_module import YourClass
 
    class TestYourClass(unittest.TestCase):
        def setUp(self):
@@ -73,7 +74,7 @@ This document provides essential information for developers working on the Kafka
            result = self.instance.your_method()
            self.assertEqual(result, expected_value)
 
-       @patch('module.to.mock')
+       @patch('kafka_mirror_kit.core.module_to_mock')
        def test_with_mock(self, mock_obj):
            mock_obj.return_value = 'mocked_value'
            result = self.instance.method_using_mock()
@@ -104,14 +105,14 @@ This document provides essential information for developers working on the Kafka
       def function_name(param1, param2):
           """
           Short description of the function.
- 
+
           Args:
               param1: Description of param1
               param2: Description of param2
- 
+
           Returns:
               Description of return value
- 
+
           Raises:
               ExceptionType: When and why this exception is raised
           """
